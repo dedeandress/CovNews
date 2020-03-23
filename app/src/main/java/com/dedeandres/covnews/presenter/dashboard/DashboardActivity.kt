@@ -74,12 +74,13 @@ class DashboardActivity : AppCompatActivity() {
                     dashboardAdapter.bind(it)
                 }
                 val indonesia = result.data?.find {
-                    it.id == (INDONESIA_ID)
+                    it.country == (INDONESIA_ID)
                 }
 
                 tv_total_death.text = indonesia?.deaths
                 tv_total_positive.text = indonesia?.confirmed
                 tv_total_recovered.text = indonesia?.recovered
+                tv_update_date.text = indonesia?.lastUpdate
             }
             ResourceState.ERROR -> {
 
@@ -88,7 +89,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val INDONESIA_ID = "65"
+        const val INDONESIA_ID = "Indonesia"
     }
 
 }

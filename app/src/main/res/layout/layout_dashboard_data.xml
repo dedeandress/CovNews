@@ -5,13 +5,33 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <TextView
+        android:id="@+id/tv_last_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/ContentTextStyle.Bold"
+        android:text="Last Update"/>
+
+    <TextView
+        android:id="@+id/tv_update_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/dp_10"
+        style="@style/ContentTextStyle"
+        app:layout_constraintLeft_toRightOf="@id/tv_last_update"
+        android:text="21 March 2020 10:13:14 WIB"/>
+
     <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cv_indonesia"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_margin="@dimen/dp_10"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_last_update"
         card_view:cardBackgroundColor="@color/country_color"
         card_view:cardCornerRadius="8dp"
         card_view:layout_constraintRight_toLeftOf="@id/cv_positive">
@@ -45,7 +65,7 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_margin="@dimen/dp_10"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_last_update"
         card_view:cardBackgroundColor="@color/positive_color"
         card_view:cardCornerRadius="8dp"
         card_view:layout_constraintLeft_toRightOf="@id/cv_indonesia"

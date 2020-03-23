@@ -1,16 +1,18 @@
 package com.dedeandres.covnews.presenter.dashboard.adapter
 
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.OvershootInterpolator
 import androidx.recyclerview.widget.RecyclerView
 import com.blongho.country_data.World
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.presenter.dashboard.entity.GlobalDataResult
 import com.dedeandres.covnews.util.ext.avoidDoubleClicks
+import com.dedeandres.covnews.util.ext.hide
+import com.dedeandres.covnews.util.ext.show
 import kotlinx.android.synthetic.main.item_country_data.view.*
-import net.cachapa.expandablelayout.ExpandableLayout
 import timber.log.Timber
 
 
@@ -46,12 +48,7 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHold
         return DashboardViewHolder(view)
     }
 
-    inner class DashboardViewHolder(private val view: View): RecyclerView.ViewHolder(view), ExpandableLayout.OnExpansionUpdateListener {
-
-        init {
-            view.el_detail.setInterpolator(OvershootInterpolator())
-            view.el_detail.setOnExpansionUpdateListener(this)
-        }
+    inner class DashboardViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
 
         fun bind(globalDataResult: GlobalDataResult) {
             view.tv_country.text = globalDataResult.country
@@ -61,13 +58,14 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHold
             view.tv_total_positive.text = globalDataResult.confirmed
             view.tv_total_recovered.text = globalDataResult.recovered
             view.avoidDoubleClicks()
-            view.iv_expand.setOnClickListener {
+            view.setOnClickListener {
                 Timber.d("$globalDataResult Click")
                 val holder =
                     recyclerView?.findViewHolderForAdapterPosition(selectedItem)
                 if (holder != null) {
                     holder.itemView.iv_expand.setImageResource(R.drawable.ic_down_arrow)
-                    holder.itemView.el_detail.collapse()
+                    TransitionManager.beginDelayedTransition(view.cv_country_data, AutoTransition())
+                    holder.itemView.el_detail.hide()
                 }
 
                 val position = adapterPosition
@@ -75,17 +73,13 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHold
                     UNSELECTED
                 } else {
                     view.iv_expand?.setImageResource(R.drawable.ic_up_arrow)
-                    view.el_detail?.expand()
+                    TransitionManager.beginDelayedTransition(view.cv_country_data, AutoTransition())
+                    view.el_detail?.show()
                     position
                 }
             }
         }
 
-        override fun onExpansionUpdate(expansionFraction: Float, state: Int) {
-            if (state == ExpandableLayout.State.EXPANDING) {
-                recyclerView?.smoothScrollToPosition(adapterPosition)
-            }
-        }
     }
 
     companion object{

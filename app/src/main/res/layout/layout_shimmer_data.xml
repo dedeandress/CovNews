@@ -14,75 +14,88 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <View
+                android:id="@+id/shimmer_last_update"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_10"
+                android:background="@color/shimmer_background_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/cv_indonesia"
+                android:id="@+id/shimmer_cv_indonesia"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_margin="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/shimmer_last_update"
                 card_view:cardBackgroundColor="@color/shimmer_background_color"
                 card_view:cardCornerRadius="8dp"
-                card_view:layout_constraintRight_toLeftOf="@id/cv_positive">
+                card_view:layout_constraintRight_toLeftOf="@id/shimmer_cv_positive">
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/cv_positive"
+                android:id="@+id/shimmer_cv_positive"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_margin="@dimen/dp_10"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                app:layout_constraintTop_toTopOf="@id/shimmer_last_update"
                 card_view:cardBackgroundColor="@color/shimmer_background_color"
                 card_view:cardCornerRadius="8dp"
-                card_view:layout_constraintLeft_toRightOf="@id/cv_indonesia"
+                card_view:layout_constraintLeft_toRightOf="@id/shimmer_cv_indonesia"
                 card_view:layout_constraintRight_toRightOf="parent">
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/cv_recovered"
+                android:id="@+id/shimmer_cv_recovered"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_margin="@dimen/dp_10"
                 app:layout_constraintLeft_toLeftOf="parent"
                 card_view:cardBackgroundColor="@color/shimmer_background_color"
                 card_view:cardCornerRadius="8dp"
-                card_view:layout_constraintRight_toLeftOf="@id/cv_death"
-                card_view:layout_constraintTop_toBottomOf="@id/cv_positive">
+                card_view:layout_constraintRight_toLeftOf="@id/shimmer_cv_death"
+                card_view:layout_constraintTop_toBottomOf="@id/shimmer_cv_positive">
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/cv_death"
+                android:id="@+id/shimmer_cv_death"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_margin="@dimen/dp_10"
                 card_view:cardBackgroundColor="@color/shimmer_background_color"
                 card_view:cardCornerRadius="8dp"
-                card_view:layout_constraintLeft_toRightOf="@id/cv_recovered"
+                card_view:layout_constraintLeft_toRightOf="@id/shimmer_cv_recovered"
                 card_view:layout_constraintRight_toRightOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@id/cv_positive">
+                card_view:layout_constraintTop_toBottomOf="@id/shimmer_cv_positive">
 
 
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/tv_global_data"
+                android:id="@+id/shimmer_tv_global_data"
                 android:layout_margin="@dimen/dp_10"
                 style="@style/ContentTextStyle.Bold"
                 android:textSize="@dimen/sp_26"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cv_death"
+                app:layout_constraintTop_toBottomOf="@id/shimmer_cv_death"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Global Data"/>
 
             <LinearLayout
-                app:layout_constraintTop_toBottomOf="@id/tv_global_data"
+                app:layout_constraintTop_toBottomOf="@id/shimmer_tv_global_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">

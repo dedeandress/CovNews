@@ -7,8 +7,8 @@
 
 
     <View
-        android:id="@+id/shimmerPartnerName"
-        android:layout_width="@dimen/dp_200"
+        android:id="@+id/shimmer_country_name"
+        android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_12"
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_14"
@@ -18,35 +18,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/shimmerPartnerDetails"
-        android:layout_width="@dimen/dp_120"
-        android:layout_height="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_6"
-        android:layout_marginEnd="@dimen/dp_8"
-        android:layout_marginBottom="@dimen/dp_14"
+        android:id="@+id/shimmer_flag"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_8"
         android:background="@color/shimmer_background_color"
-        app:layout_constraintStart_toStartOf="@id/shimmerPartnerName"
-        app:layout_constraintTop_toBottomOf="@id/shimmerPartnerName"
-        tools:text="Sneakupnaw" />
+        app:layout_constraintStart_toStartOf="@id/shimmer_country_name"
+        app:layout_constraintTop_toBottomOf="@id/shimmer_country_name"
+        />
 
     <View
-        android:id="@+id/shimmerPartnerStatus"
-        android:layout_width="@dimen/dp_180"
-        android:layout_height="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_6"
-        android:layout_marginEnd="@dimen/dp_8"
-        android:layout_marginBottom="@dimen/dp_14"
+        android:id="@+id/shimmer_expand"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_20"
         android:background="@color/shimmer_background_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/shimmerPartnerDetails"
-        app:layout_constraintTop_toBottomOf="@id/shimmerPartnerDetails"
-        tools:text="Sneakupnaw" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:layout_width="@dimen/dp_0"
-        android:layout_height="@dimen/dp_05"
-        android:background="@color/greyish"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/shimmerPartnerDetails" />
+        android:id="@+id/shimmer_tv_positive"
+        android:layout_width="40dp"
+        android:layout_height="@dimen/dp_10"
+        android:layout_margin="@dimen/dp_40"
+        android:background="@color/shimmer_background_color"
+        app:layout_constraintBottom_toBottomOf="@id/shimmer_flag"
+        app:layout_constraintRight_toLeftOf="@id/shimmer_tv_total_positive"
+        app:layout_constraintTop_toTopOf="@id/shimmer_country_name" />
+
+    <View
+        android:id="@+id/shimmer_tv_total_positive"
+        android:layout_width="30dp"
+        android:layout_height="@dimen/dp_10"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@color/shimmer_background_color"
+        android:text="12"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@id/shimmer_flag"
+        app:layout_constraintRight_toLeftOf="@id/shimmer_expand"
+        app:layout_constraintTop_toTopOf="@id/shimmer_country_name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
