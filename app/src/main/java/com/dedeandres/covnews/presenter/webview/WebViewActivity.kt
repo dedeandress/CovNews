@@ -1,5 +1,6 @@
 package com.dedeandres.covnews.presenter.webview
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -22,6 +23,7 @@ class WebViewActivity : AppCompatActivity() {
         val url = intent.getStringExtra(ARG_URL)
         setContentView(R.layout.activity_web_view)
 
+        web_view.settings.javaScriptEnabled = true
         web_view.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
