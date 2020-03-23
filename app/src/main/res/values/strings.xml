@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Covid News</string>
+    <string name="dummy_update_date">21 March 2020 10:13:14 WIB</string>
+    <string name="last_update">Last Update</string>
+    <string name="dummy_country_name">Indonesia</string>
+    <string name="positive">Positive</string>
+    <string name="dummy_total_positive">12</string>
+    <string name="recovered">Recovered</string>
+    <string name="dummy_total_recovered">12</string>
+    <string name="dummy_total_death">12</string>
+    <string name="death">Death</string>
+    <string name="news">News</string>
+    <string name="global_data">Global Data</string>
 </resources>

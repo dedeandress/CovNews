@@ -3,6 +3,7 @@ package com.dedeandres.covnews.di
 import com.dedeandres.covnews.data.dashboard.repository.DashboardRepositoryImpl
 import com.dedeandres.covnews.domain.dashboard.repository.DashboardRepository
 import com.dedeandres.covnews.domain.dashboard.usecase.DashboardUseCase
+import com.dedeandres.covnews.domain.dashboard.usecase.NewsUseCase
 import com.dedeandres.covnews.presenter.dashboard.DashboardViewModel
 import com.dedeandres.covnews.util.base.BaseViewModel
 import com.dedeandres.covnews.util.rx.ApplicationSchedulerProvider
@@ -12,7 +13,7 @@ import org.koin.dsl.module.applicationContext
 val covNewsModule = applicationContext {
 
     bean {
-        DashboardRepositoryImpl(get()) as DashboardRepository
+        DashboardRepositoryImpl(get(), get()) as DashboardRepository
     }
 
     bean {
@@ -20,7 +21,11 @@ val covNewsModule = applicationContext {
     }
 
     bean {
-        DashboardViewModel(get(), get()) as DashboardViewModel
+        NewsUseCase(get()) as NewsUseCase
+    }
+
+    bean {
+        DashboardViewModel(get(), get(), get()) as DashboardViewModel
     }
 }
 

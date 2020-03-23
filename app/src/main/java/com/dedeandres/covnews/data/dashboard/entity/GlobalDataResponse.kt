@@ -37,7 +37,7 @@ fun List<GlobalDataDto>.mapToDomain(): List<GlobalDataModel> {
     return this.map {
         GlobalDataModel(
             id = it.attributes.objectId.toString(),
-            country = it.attributes.countryRegion,
+            country = changeCountryName(it.attributes.countryRegion),
             confirmed = it.attributes.confirmed.toString(),
             lastUpdate = StringBuilder(Date(it.attributes.lastUpdate).toIndonesiaDateFormat()).append(" WIB").toString(),
             active = it.attributes.active.toString(),
@@ -46,5 +46,16 @@ fun List<GlobalDataDto>.mapToDomain(): List<GlobalDataModel> {
             long = it.attributes.long.toString(),
             recovered = it.attributes.recovered.toString()
         )
+    }
+}
+
+private fun changeCountryName(countryName: String): String {
+    return when(countryName) {
+        "Korea, South" -> {
+            "South Korea"
+        }
+        else -> {
+            countryName
+        }
     }
 }

@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.presenter.dashboard.adapter.DashboardAdapter
+import com.dedeandres.covnews.presenter.dashboard.adapter.NewsAdapter
 import com.dedeandres.covnews.presenter.dashboard.entity.GlobalDataResult
+import com.dedeandres.covnews.presenter.dashboard.entity.NewsResult
+import com.dedeandres.covnews.presenter.webview.WebViewActivity
 import com.dedeandres.covnews.util.Resource
 import com.dedeandres.covnews.util.ResourceState
 import com.dedeandres.covnews.util.ext.hide
@@ -16,20 +19,25 @@ import kotlinx.android.synthetic.main.layout_shimmer_data.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener {
 
     private val viewModel by inject<DashboardViewModel>()
     private lateinit var dashboardAdapter: DashboardAdapter
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         viewModel.globalDataLiveData.observe(this, Observer(::handleGlobalData))
+        viewModel.newsLiveData.observe(this, Observer(::handleNews))
         dashboardAdapter = DashboardAdapter()
+        newsAdapter = NewsAdapter()
 
         dashboardAdapter.setRecyclerView(rv_country_data)
         rv_country_data.adapter = dashboardAdapter
+        rv_news.adapter = newsAdapter
+        newsAdapter.setItemClickListener(this)
 
     }
 
@@ -54,24 +62,20 @@ class DashboardActivity : AppCompatActivity() {
 
         viewModel.fetchGlobalData()
         setupSwipeRefreshLayout()
+
+        viewModel.fetchNews()
     }
 
     private fun handleGlobalData(result: Resource<List<GlobalDataResult>>) {
         when (result.state) {
             ResourceState.LOADING -> {
-                swipe_refresh_layout.isRefreshing = true
-                include_dashboard.hide()
-                include_shimmer.show()
-                sl_dashboard.startShimmerAnimation()
+                showShimmer()
             }
             ResourceState.SUCCESS -> {
-                swipe_refresh_layout.isRefreshing = false
-                include_dashboard.show()
-                include_shimmer.hide()
-                sl_dashboard.stopShimmerAnimation()
+                hideShimmer()
                 Timber.d("handleGlobalData: ${result.data}")
                 result.data?.let {
-                    dashboardAdapter.bind(it)
+                    dashboardAdapter.bind(it.subList(0, 10))
                 }
                 val indonesia = result.data?.find {
                     it.country == (INDONESIA_ID)
@@ -86,6 +90,45 @@ class DashboardActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun handleNews(result: Resource<List<NewsResult>>) {
+        when(result.state) {
+
+            ResourceState.LOADING -> {
+                showShimmer()
+            }
+
+            ResourceState.SUCCESS -> {
+                hideShimmer()
+                result.data?.let {
+                    newsAdapter.bind(it)
+                }
+            }
+
+            ResourceState.ERROR -> {
+
+            }
+         }
+    }
+
+    override fun onItemClick(newsResult: NewsResult) {
+        Timber.d("onItemClick: $newsResult")
+        WebViewActivity.startFromDashboard(this, newsResult.url)
+    }
+
+    private fun showShimmer() {
+        swipe_refresh_layout.isRefreshing = true
+        include_dashboard.hide()
+        include_shimmer.show()
+        sl_dashboard.startShimmerAnimation()
+    }
+
+    private fun hideShimmer() {
+        swipe_refresh_layout.isRefreshing = false
+        include_dashboard.show()
+        include_shimmer.hide()
+        sl_dashboard.stopShimmerAnimation()
     }
 
     companion object {

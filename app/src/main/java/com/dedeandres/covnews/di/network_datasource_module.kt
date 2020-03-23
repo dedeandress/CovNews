@@ -1,6 +1,8 @@
 package com.dedeandres.covnews.di
 
 import com.dedeandres.covnews.data.dashboard.api.DashboardApi
+import com.dedeandres.covnews.data.dashboard.api.NewsApi
+import com.dedeandres.covnews.di.DatasourceProperties.NEWS_SERVER_URL
 import com.dedeandres.covnews.di.DatasourceProperties.SERVER_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,10 +20,15 @@ val networkDataSourceModule = applicationContext {
     bean {
         createWebService<DashboardApi>(get(), SERVER_URL)
     }
+
+    bean {
+        createWebService<NewsApi>(get(), NEWS_SERVER_URL)
+    }
 }
 
 object DatasourceProperties {
     const val SERVER_URL = "https://api.kawalcorona.com"
+    const val NEWS_SERVER_URL = "http://newsapi.org/v2/"
 }
 
 fun createOkHttpClient(): OkHttpClient {

@@ -83,13 +83,41 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/shimmer_tv_global_data"
+                android:id="@+id/shimmer_tv_news"
                 android:layout_margin="@dimen/dp_10"
                 style="@style/ContentTextStyle.Bold"
                 android:textSize="@dimen/sp_26"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/shimmer_cv_death"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="News"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/shimmer_cv_news"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_5"
+                app:cardBackgroundColor="@color/shimmer_background_color"
+                app:cardCornerRadius="@dimen/dp_10"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shimmer_tv_news">
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/shimmer_tv_global_data"
+                android:layout_margin="@dimen/dp_10"
+                style="@style/ContentTextStyle.Bold"
+                android:textSize="@dimen/sp_26"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shimmer_cv_news"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Global Data"/>

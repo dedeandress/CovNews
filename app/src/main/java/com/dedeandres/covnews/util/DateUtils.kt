@@ -11,3 +11,12 @@ fun Date.toIndonesiaDateFormat(): String {
     val formatter = SimpleDateFormat(pattern)
     return formatter.format(this)
 }
+
+@SuppressLint("SimpleDateFormat")
+fun dateSimpleFormat(): Date? {
+    val pattern = "yyyy-MM-dd"
+    val simpleDateFormat = SimpleDateFormat(pattern)
+
+    val formatter = SimpleDateFormat(pattern)
+    return simpleDateFormat.parse(formatter.format(Date()))
+}
