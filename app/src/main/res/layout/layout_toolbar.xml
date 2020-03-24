@@ -9,11 +9,42 @@
         android:layout_height="wrap_content"
         android:textColor="@color/positive_color"
         android:textSize="@dimen/sp_30"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         style="@style/ContentTextStyle.Bold.Large"
         android:text="@string/app_name"/>
+
+    <ImageView
+        android:id="@+id/iv_info"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_margin="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_info"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:visibility="gone"
+        android:layout_width="@dimen/dp_40"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="@dimen/dp_40">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:src="@drawable/ic_left_arrow_red"/>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

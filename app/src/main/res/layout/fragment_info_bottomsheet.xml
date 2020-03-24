@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_wash_hand"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cv_wash_time"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_70"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            app:cardCornerRadius="@dimen/dp_6"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="@id/iv_wash_hand_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_wash_hand_icon"
+                    app:layout_constraintLeft_toRightOf="@id/iv_wash_hand_icon"
+                    style="@style/ContentTextStyle.Bold"
+                    android:layout_margin="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cara Cuci Tangan"/>
+
+                <ImageView
+                    android:id="@+id/iv_wash_hand_icon"
+                    android:layout_margin="@dimen/dp_10"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/ll_detail_wash_hand"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:src="@drawable/ic_hands"/>
+
+                <ImageView
+                    android:id="@+id/iv_expand_wash_hand"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_margin="@dimen/dp_20"
+                    app:layout_constraintTop_toTopOf="@id/iv_wash_hand_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_wash_hand_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/ic_down_arrow"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_detail_wash_hand"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_50"
+                        style="@style/ContentTextStyle"
+                        android:text="Langkah 1: Basahi tangan seluruhnya dengan air bersih mengalir"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_50"
+                        style="@style/ContentTextStyle"
+                        android:text="Langkah 2: Tuangkan sabun ke seluruh bagian tangan"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_50"
+                        style="@style/ContentTextStyle"
+                        android:text="Langkah 3: Gosok sabun ke telapak tangan, punggung tangan, dan sela-sela jari – setidaknya selama 20 detik"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_50"
+                        style="@style/ContentTextStyle"
+                        android:text="Langkah 4: Bilas tangan dengan air bersih mengalir"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_50"
+                        android:layout_marginBottom="@dimen/dp_20"
+                        style="@style/ContentTextStyle"
+                        android:text="Langkah 5: Keringkan tangan dengan handuk bersih atau tisu"/>
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_wash_time"
+            app:layout_constraintBottom_toTopOf="@id/cv_hotline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_20"
+            app:cardCornerRadius="@dimen/dp_6"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="@id/iv_time_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_time_icon"
+                    app:layout_constraintLeft_toRightOf="@id/iv_time_icon"
+                    style="@style/ContentTextStyle.Bold"
+                    android:layout_margin="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Berapa Lama untuk Mencuci Tangan"/>
+
+                <ImageView
+                    android:id="@+id/iv_time_icon"
+                    android:layout_margin="@dimen/dp_10"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/ll_detail_wash_time"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:src="@drawable/ic_fast_dry"/>
+
+                <ImageView
+                    android:id="@+id/iv_expand_wash_time"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_margin="@dimen/dp_20"
+                    app:layout_constraintTop_toTopOf="@id/iv_time_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_time_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/ic_down_arrow"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_detail_wash_time"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_50"
+                        android:layout_marginBottom="@dimen/dp_20"
+                        style="@style/ContentTextStyle"
+                        android:text="Anda harus mencuci tangan setidaknya selama 20-30 detik. Cara mudah memperhitungkan durasinya, nyanyikan lagu 'Selamat Ulang Tahun' sebanyak dua kali.
+\n\nBegitu juga ketika menggunakan cairan pembersih tangan: gunakan cairan pembersih tangan yang berbasis alkohol minimal 60% dan gosokkan ke tangan setidaknya selama 20 detik untuk memastikan seluruh tangan bersih. "/>
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_hotline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_provide"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_20"
+            app:cardCornerRadius="@dimen/dp_6"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="@id/iv_hotline"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_hotline"
+                    app:layout_constraintLeft_toRightOf="@id/iv_hotline"
+                    style="@style/ContentTextStyle.Bold"
+                    android:layout_margin="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hotline"/>
+
+                <ImageView
+                    android:id="@+id/iv_hotline"
+                    android:padding="@dimen/dp_16"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_telephone"/>
+
+                <ImageView
+                    android:id="@+id/iv_expand_hotline"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_margin="@dimen/dp_20"
+                    app:layout_constraintTop_toTopOf="@id/iv_hotline"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_hotline"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/ic_down_arrow"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail_hotline"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/iv_hotline"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_hotline"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_provide"
+            android:layout_margin="@dimen/dp_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ContentTextStyle"
+            android:textAlignment="center"
+            android:text="All Data Provide by \nUnicef, NewsApi, and KawalCorona.com"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

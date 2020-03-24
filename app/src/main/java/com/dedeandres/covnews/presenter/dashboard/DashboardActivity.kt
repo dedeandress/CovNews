@@ -1,29 +1,37 @@
 package com.dedeandres.covnews.presenter.dashboard
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.presenter.dashboard.adapter.DashboardAdapter
 import com.dedeandres.covnews.presenter.dashboard.adapter.NewsAdapter
+import com.dedeandres.covnews.presenter.dashboard.bottomsheet.InfoBottomSheetFragment
 import com.dedeandres.covnews.presenter.dashboard.entity.GlobalDataResult
 import com.dedeandres.covnews.presenter.dashboard.entity.NewsResult
+import com.dedeandres.covnews.presenter.globaldata.GlobalDataActivity
 import com.dedeandres.covnews.presenter.webview.WebViewActivity
 import com.dedeandres.covnews.util.Resource
 import com.dedeandres.covnews.util.ResourceState
+import com.dedeandres.covnews.util.ext.avoidDoubleClicks
 import com.dedeandres.covnews.util.ext.hide
 import com.dedeandres.covnews.util.ext.show
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_dashboard_data.*
 import kotlinx.android.synthetic.main.layout_shimmer_data.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener {
+class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, View.OnClickListener {
 
     private val viewModel by inject<DashboardViewModel>()
     private lateinit var dashboardAdapter: DashboardAdapter
     private lateinit var newsAdapter: NewsAdapter
+    private val infoBottomSheet by lazy {
+        InfoBottomSheetFragment()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +46,21 @@ class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener {
         rv_country_data.adapter = dashboardAdapter
         rv_news.adapter = newsAdapter
         newsAdapter.setItemClickListener(this)
+        iv_info.setOnClickListener(this)
+        tv_see_all_global.setOnClickListener(this)
 
+    }
+
+    override fun onClick(v: View?) {
+        v?.avoidDoubleClicks()
+        when(v?.id) {
+            R.id.iv_info -> {
+                infoBottomSheet.show(supportFragmentManager, infoBottomSheet.tag)
+            }
+            R.id.tv_see_all_global -> {
+                GlobalDataActivity.startFromDashboard(this)
+            }
+        }
     }
 
     private fun setupSwipeRefreshLayout() {

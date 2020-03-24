@@ -3,6 +3,7 @@
     package="com.dedeandres.covnews">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".App"
@@ -13,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presenter.webview.WebViewActivity"></activity>
+        <activity android:name=".presenter.globaldata.GlobalDataActivity"></activity>
+        <activity android:name=".presenter.webview.WebViewActivity" />
         <activity android:name=".presenter.dashboard.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,9 @@
 package com.dedeandres.covnews.presenter.dashboard
 
 import androidx.lifecycle.MutableLiveData
+import com.dedeandres.covnews.data.dashboard.entity.Hotline
 import com.dedeandres.covnews.domain.dashboard.usecase.DashboardUseCase
+import com.dedeandres.covnews.domain.dashboard.usecase.HotlineUseCase
 import com.dedeandres.covnews.domain.dashboard.usecase.NewsUseCase
 import com.dedeandres.covnews.presenter.dashboard.entity.GlobalDataResult
 import com.dedeandres.covnews.presenter.dashboard.entity.NewsResult
@@ -18,11 +20,13 @@ import timber.log.Timber
 class DashboardViewModel(
     private val schedulerProvider: SchedulerProvider,
     private val dashboardUseCase: DashboardUseCase,
-    private val newsUseCase: NewsUseCase
+    private val newsUseCase: NewsUseCase,
+    private val hotlineUseCase: HotlineUseCase
 ) : BaseViewModel() {
 
     val globalDataLiveData = MutableLiveData<Resource<List<GlobalDataResult>>>()
     val newsLiveData = MutableLiveData<Resource<List<NewsResult>>>()
+    val hotlineLiveData = MutableLiveData<Resource<List<Hotline>>>()
 
     fun fetchGlobalData() {
         globalDataLiveData.setLoadingEvent()
@@ -53,6 +57,20 @@ class DashboardViewModel(
                 Timber.e("News: $it")
                 newsLiveData.setErrorEvent(it)
             })
+    }
+
+    fun fetchHotline() {
+        hotlineLiveData.setLoadingEvent()
+        hotlineUseCase.execute()
+            .with(schedulerProvider)
+            .subscribeBy(
+                onSuccess = {
+                    hotlineLiveData.setSuccessEvent(it)
+                },
+                onError = {
+                    hotlineLiveData.setErrorEvent(it)
+                }
+            )
     }
 
 }

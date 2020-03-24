@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/positive_color</item>
     </style>
 
     <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>
@@ -22,6 +22,12 @@
 
     <style name="ContentTextStyle.Bold.Large">
         <item name="android:textSize">@dimen/sp_20</item>
+    </style>
+
+    <style name="CommonBottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
     </style>
 
 </resources>

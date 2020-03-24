@@ -2,6 +2,8 @@ package com.dedeandres.covnews.data.dashboard.repository
 
 import com.dedeandres.covnews.data.dashboard.api.DashboardApi
 import com.dedeandres.covnews.data.dashboard.api.NewsApi
+import com.dedeandres.covnews.data.dashboard.entity.Hotline
+import com.dedeandres.covnews.data.dashboard.entity.getListHotline
 import com.dedeandres.covnews.data.dashboard.entity.mapToDomain
 import com.dedeandres.covnews.domain.dashboard.entity.GlobalDataModel
 import com.dedeandres.covnews.domain.dashboard.entity.NewsModel
@@ -21,5 +23,9 @@ class DashboardRepositoryImpl(private val dashboardApi: DashboardApi, private va
         return newsApi.getNews(dateSimpleFormat()).map {
             it.articles.mapToDomain()
         }
+    }
+
+    override fun getHotline(): Single<List<Hotline>> {
+        return Single.just(getListHotline())
     }
 }

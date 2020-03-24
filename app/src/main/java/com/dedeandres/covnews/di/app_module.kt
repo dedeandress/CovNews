@@ -3,6 +3,7 @@ package com.dedeandres.covnews.di
 import com.dedeandres.covnews.data.dashboard.repository.DashboardRepositoryImpl
 import com.dedeandres.covnews.domain.dashboard.repository.DashboardRepository
 import com.dedeandres.covnews.domain.dashboard.usecase.DashboardUseCase
+import com.dedeandres.covnews.domain.dashboard.usecase.HotlineUseCase
 import com.dedeandres.covnews.domain.dashboard.usecase.NewsUseCase
 import com.dedeandres.covnews.presenter.dashboard.DashboardViewModel
 import com.dedeandres.covnews.util.base.BaseViewModel
@@ -25,7 +26,11 @@ val covNewsModule = applicationContext {
     }
 
     bean {
-        DashboardViewModel(get(), get(), get()) as DashboardViewModel
+        HotlineUseCase(get()) as HotlineUseCase
+    }
+
+    bean {
+        DashboardViewModel(get(), get(), get(), get()) as DashboardViewModel
     }
 }
 
