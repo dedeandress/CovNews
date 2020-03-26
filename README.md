@@ -22,5 +22,3 @@ CovNews is app for get latest update about Covid-19 (Corona Virus Disease)
 
 # Download App
 https://install.appcenter.ms/users/dedeandres/apps/cov-news/distribution_groups/release
-
-<img src="https://raw.githubusercontent.com/dedeandress/CovNews/master/image/qr_download.png" alt="qr_download.png" width="250px">
