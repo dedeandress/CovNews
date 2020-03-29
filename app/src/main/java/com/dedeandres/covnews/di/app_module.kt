@@ -2,11 +2,11 @@ package com.dedeandres.covnews.di
 
 import com.dedeandres.covnews.data.dashboard.repository.DashboardRepositoryImpl
 import com.dedeandres.covnews.domain.dashboard.repository.DashboardRepository
-import com.dedeandres.covnews.domain.dashboard.usecase.DashboardUseCase
-import com.dedeandres.covnews.domain.dashboard.usecase.HotlineUseCase
-import com.dedeandres.covnews.domain.dashboard.usecase.NewsUseCase
-import com.dedeandres.covnews.presenter.dashboard.DashboardViewModel
-import com.dedeandres.covnews.util.base.BaseViewModel
+import com.dedeandres.covnews.domain.dashboard.usecase.FetchDashboardUseCase
+import com.dedeandres.covnews.domain.dashboard.usecase.FetchIndonesiaDataUseCase
+import com.dedeandres.covnews.domain.dashboard.usecase.FetchHotlineUseCase
+import com.dedeandres.covnews.domain.dashboard.usecase.FetchNewsUseCase
+import com.dedeandres.covnews.presenter.dashboard.SharedViewModel
 import com.dedeandres.covnews.util.rx.ApplicationSchedulerProvider
 import com.dedeandres.covnews.util.rx.SchedulerProvider
 import org.koin.dsl.module.applicationContext
@@ -18,19 +18,23 @@ val covNewsModule = applicationContext {
     }
 
     bean {
-        DashboardUseCase(get()) as DashboardUseCase
+        FetchDashboardUseCase(get()) as FetchDashboardUseCase
     }
 
     bean {
-        NewsUseCase(get()) as NewsUseCase
+        FetchNewsUseCase(get()) as FetchNewsUseCase
     }
 
     bean {
-        HotlineUseCase(get()) as HotlineUseCase
+        FetchHotlineUseCase(get()) as FetchHotlineUseCase
     }
 
     bean {
-        DashboardViewModel(get(), get(), get(), get()) as DashboardViewModel
+        FetchIndonesiaDataUseCase(get()) as FetchIndonesiaDataUseCase
+    }
+
+    bean {
+        SharedViewModel(get(), get(), get(), get(), get()) as SharedViewModel
     }
 }
 

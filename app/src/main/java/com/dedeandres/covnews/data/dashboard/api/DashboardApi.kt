@@ -9,4 +9,7 @@ interface DashboardApi {
     @GET("/")
     fun getGlobalData(): Single<List<GlobalDataDto>>
 
+    @GET("/indonesia/provinsi")
+    fun getIndonesiaData(): Single<List<IndonesiaDataDto>>
+
 }

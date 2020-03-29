@@ -1,9 +1,5 @@
 package com.dedeandres.covnews.presenter.dashboard.bottomsheet
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.data.dashboard.entity.Hotline
-import com.dedeandres.covnews.presenter.dashboard.DashboardViewModel
+import com.dedeandres.covnews.presenter.dashboard.SharedViewModel
 import com.dedeandres.covnews.presenter.dashboard.adapter.HotlineAdapter
 import com.dedeandres.covnews.util.Resource
 import com.dedeandres.covnews.util.ResourceState
@@ -32,7 +28,7 @@ import timber.log.Timber
 
 class InfoBottomSheetFragment : BottomSheetDialogFragment(), View.OnClickListener {
 
-    private val viewModel by inject<DashboardViewModel>()
+    private val viewModel by inject<SharedViewModel>()
     private val hotlineAdapter by lazy {
         HotlineAdapter()
     }

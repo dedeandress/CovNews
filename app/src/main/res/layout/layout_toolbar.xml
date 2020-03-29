@@ -27,6 +27,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/ic_info"/>
 
+    <ImageView
+        android:id="@+id/iv_setting"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_margin="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_settings"/>
+
     <RelativeLayout
         android:id="@+id/rl_back"
         android:visibility="gone"

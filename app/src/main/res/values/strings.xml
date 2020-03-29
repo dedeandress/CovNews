@@ -11,4 +11,7 @@
     <string name="death">Death</string>
     <string name="news">News</string>
     <string name="global_data">Global Data</string>
+    <string name="dummy_province_name">Daerah Istimewa Yogyakarta</string>
+    <string name="see_all">See All</string>
+    <string name="indonesia_data">Indonesia Data</string>
 </resources>

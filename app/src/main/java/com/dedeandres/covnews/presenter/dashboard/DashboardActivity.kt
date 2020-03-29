@@ -1,16 +1,23 @@
 package com.dedeandres.covnews.presenter.dashboard
 
+import android.content.Context
+import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.presenter.dashboard.adapter.DashboardAdapter
 import com.dedeandres.covnews.presenter.dashboard.adapter.NewsAdapter
 import com.dedeandres.covnews.presenter.dashboard.bottomsheet.InfoBottomSheetFragment
+import com.dedeandres.covnews.presenter.dashboard.bottomsheet.SettingBottomSheetFragment
 import com.dedeandres.covnews.presenter.dashboard.entity.GlobalDataResult
 import com.dedeandres.covnews.presenter.dashboard.entity.NewsResult
 import com.dedeandres.covnews.presenter.globaldata.GlobalDataActivity
+import com.dedeandres.covnews.presenter.indonesiadata.IndonesiaDataActivity
 import com.dedeandres.covnews.presenter.webview.WebViewActivity
 import com.dedeandres.covnews.util.Resource
 import com.dedeandres.covnews.util.ResourceState
@@ -23,17 +30,26 @@ import kotlinx.android.synthetic.main.layout_shimmer_data.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
+import java.util.*
 
-class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, View.OnClickListener {
+class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, View.OnClickListener, OnLocaleChangedListener {
 
-    private val viewModel by inject<DashboardViewModel>()
+    private val localizationDelegate = LocalizationActivityDelegate(this)
+
+    private val viewModel by inject<SharedViewModel>()
     private lateinit var dashboardAdapter: DashboardAdapter
     private lateinit var newsAdapter: NewsAdapter
+
     private val infoBottomSheet by lazy {
         InfoBottomSheetFragment()
     }
+    private val settingBottomSheet by lazy {
+        SettingBottomSheetFragment()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        localizationDelegate.addOnLocaleChangedListener(this)
+        localizationDelegate.onCreate()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -47,7 +63,9 @@ class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, 
         rv_news.adapter = newsAdapter
         newsAdapter.setItemClickListener(this)
         iv_info.setOnClickListener(this)
+        iv_setting.setOnClickListener(this)
         tv_see_all_global.setOnClickListener(this)
+        cv_indonesia.setOnClickListener(this)
 
     }
 
@@ -59,6 +77,12 @@ class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, 
             }
             R.id.tv_see_all_global -> {
                 GlobalDataActivity.startFromDashboard(this)
+            }
+            R.id.cv_indonesia -> {
+                IndonesiaDataActivity.startFromDashboard(this)
+            }
+            R.id.iv_setting -> {
+                settingBottomSheet.show(supportFragmentManager, settingBottomSheet.tag)
             }
         }
     }
@@ -77,6 +101,23 @@ class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, 
                 viewModel.fetchGlobalData()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        localizationDelegate.onResume(this)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(localizationDelegate.attachBaseContext(newBase))
+    }
+
+    override fun getApplicationContext(): Context {
+        return localizationDelegate.getApplicationContext(super.getApplicationContext())
+    }
+
+    override fun getResources(): Resources {
+        return localizationDelegate.getResources(super.getResources())
     }
 
     override fun onStart() {
@@ -155,6 +196,17 @@ class DashboardActivity : AppCompatActivity(), NewsAdapter.OnItemClickListener, 
 
     companion object {
         const val INDONESIA_ID = "Indonesia"
+
+        fun startFromDashboard(context: Context) {
+            Intent(context, DashboardActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(this)
+            }
+        }
     }
+
+    override fun onAfterLocaleChanged() {}
+
+    override fun onBeforeLocaleChanged() {}
 
 }

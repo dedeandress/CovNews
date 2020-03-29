@@ -5,7 +5,7 @@ import com.dedeandres.covnews.domain.dashboard.repository.DashboardRepository
 import com.dedeandres.covnews.util.SingleUseCase
 import io.reactivex.Single
 
-class HotlineUseCase(
+class FetchHotlineUseCase(
     private val dashboardRepository: DashboardRepository
 ) : SingleUseCase<List<Hotline>>() {
 

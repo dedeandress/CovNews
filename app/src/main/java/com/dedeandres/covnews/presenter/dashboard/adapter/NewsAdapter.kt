@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.presenter.dashboard.entity.NewsResult
 import com.dedeandres.covnews.util.ext.avoidDoubleClicks
@@ -48,6 +49,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             view.tv_source.text = newsResult.sources
             Glide.with(view)
                 .load(newsResult.urlToImage)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(view.iv_news_image)
             itemView.setOnClickListener {
                 it?.avoidDoubleClicks()

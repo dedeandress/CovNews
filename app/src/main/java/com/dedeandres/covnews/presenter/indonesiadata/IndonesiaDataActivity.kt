@@ -1,4 +1,4 @@
-package com.dedeandres.covnews.presenter.globaldata
+package com.dedeandres.covnews.presenter.indonesiadata
 
 import android.content.Context
 import android.content.Intent
@@ -7,52 +7,59 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.presenter.dashboard.SharedViewModel
-import com.dedeandres.covnews.presenter.dashboard.adapter.DashboardAdapter
-import com.dedeandres.covnews.presenter.dashboard.entity.GlobalDataResult
+import com.dedeandres.covnews.presenter.dashboard.entity.IndonesiaDataResult
+import com.dedeandres.covnews.presenter.indonesiadata.adapter.IndonesiaDataAdapter
 import com.dedeandres.covnews.util.Resource
 import com.dedeandres.covnews.util.ResourceState
 import com.dedeandres.covnews.util.ext.hide
 import com.dedeandres.covnews.util.ext.show
-import kotlinx.android.synthetic.main.activity_global_data.*
+import kotlinx.android.synthetic.main.activity_indonesia_data.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 
-class GlobalDataActivity : AppCompatActivity() {
+class IndonesiaDataActivity : AppCompatActivity() {
 
     private val viewModel by inject<SharedViewModel>()
-    private lateinit var dashboardAdapter: DashboardAdapter
+
+    private val indonesiaDataAdapter by lazy {
+        IndonesiaDataAdapter().apply {
+            setRecyclerView(rv_indonesia)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_global_data)
+        setContentView(R.layout.activity_indonesia_data)
+
+        rv_indonesia.adapter = indonesiaDataAdapter
 
         setupToolbar()
 
-        dashboardAdapter = DashboardAdapter()
-
-        dashboardAdapter.setRecyclerView(rv_country_data)
-        rv_country_data.adapter = dashboardAdapter
-
-        viewModel.globalDataLiveData.observe(this, Observer(::handleGlobalData))
-
+        viewModel.indonesiaDataLiveData.observe(this, Observer(::handleFetchIndonesiaData))
     }
 
-    private fun handleGlobalData(result: Resource<List<GlobalDataResult>>) {
-        when (result.state) {
+    override fun onStart() {
+        super.onStart()
+        viewModel.fetchIndonesiaData()
+    }
+
+    private fun handleFetchIndonesiaData(result: Resource<List<IndonesiaDataResult>>) {
+        when(result.state) {
             ResourceState.LOADING -> {
+                progress_bar?.show()
             }
             ResourceState.SUCCESS -> {
-                Timber.d("handleGlobalData: ${result.data}")
+                progress_bar?.hide()
+                rv_indonesia?.show()
                 result.data?.let {
-                    dashboardAdapter.bind(it)
+                    indonesiaDataAdapter.bind(it)
                 }
-
             }
             ResourceState.ERROR -> {
 
             }
         }
+
     }
 
     private fun setupToolbar() {
@@ -67,9 +74,11 @@ class GlobalDataActivity : AppCompatActivity() {
 
     companion object {
         fun startFromDashboard(context: Context) {
-            Intent(context, GlobalDataActivity::class.java).apply {
+            Intent(context, IndonesiaDataActivity::class.java).apply {
                 context.startActivity(this)
             }
         }
     }
+
+
 }

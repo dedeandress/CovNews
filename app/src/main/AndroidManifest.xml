@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presenter.globaldata.GlobalDataActivity"></activity>
+        <activity android:name=".presenter.indonesiadata.IndonesiaDataActivity"></activity>
+        <activity android:name=".presenter.globaldata.GlobalDataActivity" />
         <activity android:name=".presenter.webview.WebViewActivity" />
         <activity android:name=".presenter.dashboard.DashboardActivity">
             <intent-filter>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Covid News</string>
+    <string name="dummy_update_date">21 March 2020 10:13:14 WIB</string>
+    <string name="last_update">Update Terakhir</string>
+    <string name="dummy_country_name">Indonesia</string>
+    <string name="positive">Positif</string>
+    <string name="dummy_total_positive">12</string>
+    <string name="recovered">Sembuh</string>
+    <string name="dummy_total_recovered">12</string>
+    <string name="dummy_total_death">12</string>
+    <string name="death">Meninggal</string>
+    <string name="news">Berita</string>
+    <string name="global_data">Data Global</string>
+    <string name="dummy_province_name">Daerah Istimewa Yogyakarta</string>
+    <string name="see_all">Liat Semua</string>
+    <string name="indonesia_data">Data Indonesia</string>
+
+</resources>

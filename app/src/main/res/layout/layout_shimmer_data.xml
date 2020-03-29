@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@id/shimmer_cv_death"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="News"/>
+                android:text="@string/news"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/shimmer_cv_news"
@@ -120,7 +120,7 @@
                 app:layout_constraintTop_toBottomOf="@id/shimmer_cv_news"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Global Data"/>
+                android:text="@string/global_data"/>
 
             <LinearLayout
                 app:layout_constraintTop_toBottomOf="@id/shimmer_tv_global_data"

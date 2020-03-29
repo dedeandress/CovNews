@@ -1,12 +1,15 @@
 package com.dedeandres.covnews.presenter.dashboard.adapter
 
+import android.net.Uri
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.blongho.country_data.World
+import com.bumptech.glide.Glide
 import com.dedeandres.covnews.R
 import com.dedeandres.covnews.presenter.dashboard.entity.GlobalDataResult
 import com.dedeandres.covnews.util.ext.avoidDoubleClicks
@@ -14,6 +17,7 @@ import com.dedeandres.covnews.util.ext.hide
 import com.dedeandres.covnews.util.ext.show
 import kotlinx.android.synthetic.main.item_country_data.view.*
 import timber.log.Timber
+import java.lang.StringBuilder
 
 
 class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHolder>() {
@@ -49,11 +53,12 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHold
     }
 
     inner class DashboardViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
-
         fun bind(globalDataResult: GlobalDataResult) {
             view.tv_country.text = globalDataResult.country
-            val flag = World.getFlagOf(globalDataResult.country)
-            view.iv_flag.setImageResource(flag)
+            Glide.with(view)
+                .load(getFlagUrl(globalDataResult.country))
+                .placeholder(R.drawable.ic_flag)
+                .into(view.iv_flag)
             view.tv_total_death.text = globalDataResult.deaths
             view.tv_total_positive.text = globalDataResult.confirmed
             view.tv_total_recovered.text = globalDataResult.recovered
@@ -80,9 +85,19 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHold
             }
         }
 
+        private fun getFlagUrl(countryName: String): Uri {
+            val countryCode = World.getCountryFrom(countryName)?.currency?.country
+            Timber.d("countryCode: $countryCode")
+            return Uri.parse(COUNTRY_FLAG_BASE_URL).buildUpon().appendPath(countryCode).appendPath(
+                COUNTRY_FLAG_STYLE).appendPath(COUNTRY_FLAG_SIZE).build()
+        }
+
     }
 
     companion object{
+        const val COUNTRY_FLAG_BASE_URL = "https://www.countryflags.io/"
+        const val COUNTRY_FLAG_STYLE = "flat"
+        const val COUNTRY_FLAG_SIZE= "64.png"
         const val UNSELECTED = -1
     }
 

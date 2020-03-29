@@ -54,6 +54,9 @@ private fun changeCountryName(countryName: String): String {
         "Korea, South" -> {
             "South Korea"
         }
+        "Taiwan*" -> {
+            "Taiwan"
+        }
         else -> {
             countryName
         }

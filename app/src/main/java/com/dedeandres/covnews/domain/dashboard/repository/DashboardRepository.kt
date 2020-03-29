@@ -2,6 +2,7 @@ package com.dedeandres.covnews.domain.dashboard.repository
 
 import com.dedeandres.covnews.data.dashboard.entity.Hotline
 import com.dedeandres.covnews.domain.dashboard.entity.GlobalDataModel
+import com.dedeandres.covnews.domain.dashboard.entity.IndonesiaDataModel
 import com.dedeandres.covnews.domain.dashboard.entity.NewsModel
 import io.reactivex.Single
 
@@ -12,5 +13,7 @@ interface DashboardRepository {
     fun getNews(): Single<List<NewsModel>>
 
     fun getHotline(): Single<List<Hotline>>
+
+    fun getIndonesiaData(): Single<List<IndonesiaDataModel>>
 
 }

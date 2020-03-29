@@ -56,6 +56,7 @@ class WebViewActivity : AppCompatActivity() {
     private fun setupToolbar() {
         iv_info.hide()
         rl_back.show()
+        iv_setting.hide()
 
         rl_back.setOnClickListener {
             finish()
